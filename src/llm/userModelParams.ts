@@ -61,6 +61,7 @@ export interface OpenAiUserModelParams extends UserModelParams {
     modelName: string;
     temperature: number;
     apiKey: string;
+    baseUrl?: string;
 }
 
 export interface GrazieUserModelParams extends UserModelParams {
@@ -142,6 +143,7 @@ export const openAiUserModelParamsSchema: JSONSchemaType<OpenAiUserModelParams> 
             modelName: { type: "string" },
             temperature: { type: "number" },
             apiKey: { type: "string" },
+            baseUrl: { type: "string", nullable: true },
             ...(userModelParamsSchema.properties as PropertiesSchema<UserModelParams>),
         },
         required: ["modelId", "modelName", "temperature", "apiKey"],

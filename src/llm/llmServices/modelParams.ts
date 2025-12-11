@@ -43,6 +43,7 @@ export interface OpenAiModelParams extends ModelParams {
     modelName: string;
     temperature: number;
     apiKey: string;
+    baseUrl?: string;
 }
 
 export interface GrazieModelParams extends ModelParams {
@@ -134,6 +135,7 @@ export const openAiModelParamsSchema: JSONSchemaType<OpenAiModelParams> = {
         modelName: { type: "string" },
         temperature: { type: "number" },
         apiKey: { type: "string" },
+        baseUrl: { type: "string", nullable: true },
         ...(modelParamsSchema.properties as PropertiesSchema<ModelParams>),
     },
     required: [

@@ -24,6 +24,7 @@ import {
 
 suite("[LLMService] Test `OpenAiService`", function () {
     const apiKey = process.env.OPENAI_API_KEY;
+    const baseUrl = process.env.OPENAI_BASE_URL;
     const choices = 15;
     const inputFile = ["small_document.v"];
 
@@ -43,6 +44,7 @@ suite("[LLMService] Test `OpenAiService`", function () {
             const inputParams: OpenAiUserModelParams = {
                 ...requiredInputParamsTemplate,
                 apiKey: apiKey!,
+                baseUrl: baseUrl,
             };
             const openAiService = new OpenAiService();
             await testLLMServiceCompletesAdmitFromFile(

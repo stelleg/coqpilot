@@ -89,7 +89,12 @@ class OpenAiServiceInternal extends LLMServiceInternal<
     ): Promise<GeneratedRawContent> {
         LLMServiceInternal.validateChoices(choices);
 
-        const openai = new OpenAI({ apiKey: params.apiKey });
+        let openaiParams =
+            params.baseUrl === undefined
+                ? { apiKey: params.apiKey }
+                : { apiKey: params.apiKey, baseUrl: params.baseUrl };
+
+        const openai = new OpenAI(openaiParams);
         const formattedChat = this.formatChatHistory(analyzedChat.chat, params);
         this.logDebug.event("Completion requested", {
             history: formattedChat,
